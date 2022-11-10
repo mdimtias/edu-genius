@@ -1,3 +1,16 @@
 .popular-service{
     background-color: #dfdfdf;
 }
+.popular-service h2{
+    font-family: Oswald;
+}
+.main-review-section{
+    background-color: #1E2532;
+    color: #dfdfdf;
+}
+.main-review-section h2{
+    font-family: Oswald;
+}
+.main-review-section .review-style{
+    color: #EFDEC2;
+}

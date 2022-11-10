@@ -1,0 +1,25 @@
+.review-section{
+    background-color: #1E2532;
+}
+.review-card{
+    background-color: #2D3542;
+    box-shadow: -40px 0px 51px 0px rgb(18 22 27 / 26%);
+    color:#fff;
+}
+.review-card:hover{
+    background-color: #ffffff;
+    color:#000000;
+}
+.profile-review-img img{
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+}
+.profile-info h2{
+    font-size: 20px;
+    font-weight: bold;
+}
+.profile-info p{
+    font-size: 16px;
+    padding: 0 20px;
+}
