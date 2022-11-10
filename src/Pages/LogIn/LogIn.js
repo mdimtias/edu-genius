@@ -4,10 +4,11 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../App';
 import './Login.css';
 import { GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
-
+import useTitle from '../../hooks/useTitle';
 const providerGoogle = new GoogleAuthProvider();
 const providerGithub = new GithubAuthProvider();
 const LogIn = () => {
+    useTitle("Login")
     const {login, providerLogin} = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
@@ -84,6 +85,9 @@ const handleGithub =async ()=>{
                 <button onClick={handleGoogle}><img src="https://img.icons8.com/color/2x/google-logo.png" alt="" /></button>
                 <button onClick={handleGithub}><img src="https://img.icons8.com/ios-filled/2x/github.png" alt="" /></button>
             </div>
+        </div>
+        <div className="register text-center text-xl p-5">
+          <p>If you don't have account <Link to="../register" className="text-green-500">Register</Link> Now</p>
         </div>
         </div>
     );

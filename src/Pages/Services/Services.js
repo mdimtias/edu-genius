@@ -18,8 +18,9 @@ const Services = () => {
                 <div className="card-body items-center text-center">
                     <h2 className="card-title">{service.service_name}</h2>
                     <p>{service.short_description}</p>
+                    <p className="font-bold text-3xxl p-2">Price: ${service.price}</p>
                     <div className="card-actions">
-                        <Link to={`${`../service/${service.service_name}`}`}><button className="btn btn-primary">Buy Now</button></Link>
+                        <Link to={`${`../service/${service.service_name}`}`}><button className="btn btn-primary">Details</button></Link>
                     </div>
                 </div>
             </div>

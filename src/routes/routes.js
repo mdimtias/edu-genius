@@ -12,6 +12,9 @@ import AddService from '../Pages/AddService/AddService'
 import PrivateRoute from './PrivateRoute'
 import AddCategory from '../Pages/AddCategory/AddCategory'
 import AddReview from '../Pages/AddReview/AddReview'
+import MyReview from '../Pages/MyReview/MyReview'
+import AllBlog from '../Pages/AllBlog/AllBlog'
+import BlogDetail from '../Pages/BlogDetail/BlogDetail'
 const router = createBrowserRouter([{
     path: "/",
     element: <Main></Main>,
@@ -28,6 +31,15 @@ const router = createBrowserRouter([{
         {
             path: '/register',
             element: <Register></Register>
+        },
+        {
+            path: '/blog',
+            element: <AllBlog></AllBlog>
+        },
+        {
+            path: '/blog/:title',
+            element: <BlogDetail></BlogDetail>,
+            loader: ({params})=>fetch(`https://assignment-10-server-iota.vercel.app/blogs/${params.title}`)
         },
         {
             path: '/profile',
@@ -55,6 +67,11 @@ const router = createBrowserRouter([{
             path: '/review',
             element: <AllReview></AllReview>
         },
+        {
+            path: '/my-review',
+            element: <PrivateRoute><MyReview></MyReview></PrivateRoute>
+        },
+
         {
             path: '/add-review',
             element: <PrivateRoute><AddReview></AddReview></PrivateRoute>

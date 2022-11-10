@@ -1,8 +1,10 @@
 import React, {useContext, useState} from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../App';
+import useTitle from '../../hooks/useTitle';
 import './Register.css'
 const Register = () => {
+  useTitle("Register");
     const {createUser, updateUser} = useContext(AuthContext);
 
     const [user, setUser] = useState({

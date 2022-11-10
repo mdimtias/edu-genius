@@ -3,12 +3,14 @@ import Slider from '../SharedPage/Slider/Slider';
 import Service from './Service/Service';
 import './Home.css';
 import Review from './Review/Review';
-import LatestBlog from './Service/LatestBlog/LatestBlog';
+import LatestBlog from './LatestBlog/LatestBlog';
 import Contact from '../SharedPage/Contact/Contact';
 import About from './About/About';
 import Category from './Category/Category';
 import { Link } from 'react-router-dom';
+import useTitle from '../../hooks/useTitle';
 const Home = () => {
+    useTitle("Home")
     return (
         <>
             <Slider></Slider>

@@ -1,8 +1,9 @@
 import React from 'react';
 import toast from 'react-hot-toast';
+import useTitle from '../../hooks/useTitle';
 
 const AddService = () => {
-
+    useTitle("Add Service");
     const formHandler = (e)=>{
         e.preventDefault();
         const form = e.target;
@@ -11,6 +12,7 @@ const AddService = () => {
         const owner_name = form.owner_name.value;
         const owner_img = form.owner_img.value;
         const keyword = form.keyword.value;
+        const price = form.price.value;
         const short_description = form.short_description.value;
         const long_description = form.long_description.value;
         console.log(name, img, owner_name, owner_img, keyword, short_description, long_description)
@@ -21,7 +23,8 @@ const AddService = () => {
             img: img,
             owner: owner_name,
             owner_img: owner_img,
-            keyword: keyword
+            keyword: keyword,
+            price: price
         }
        
         fetch("https://assignment-10-server-iota.vercel.app/service", {
@@ -180,6 +183,37 @@ const AddService = () => {
                             <input
                                 type="text"
                                 name="keyword"
+                                required
+                                className="form-control
+        block
+        w-full
+        px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="mt-4">
+                        <label
+                            htmlFor="keyword"
+                            className="block text-sm font-medium text-gray-700 undefined"
+                        >
+                           Price
+                        </label>
+                        <div className="flex flex-col items-start">
+                            <input
+                                type="number"
+                                name="price"
                                 required
                                 className="form-control
         block

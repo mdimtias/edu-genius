@@ -4,8 +4,9 @@ import router from './routes/routes';
 import {createUserWithEmailAndPassword, signInWithPopup, updateProfile, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut} from 'firebase/auth';
 import app from './Firebase/Firebase.config';
 import { Toaster } from 'react-hot-toast';
+import { PhotoProvider } from 'react-photo-view';
 import './App.css';
-
+import 'react-photo-view/dist/react-photo-view.css';
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
@@ -59,6 +60,7 @@ function App() {
         user, 
         updateUser,
         loading,
+        setLoading,
         createUser, 
         login, 
         providerLogin,
@@ -67,8 +69,10 @@ function App() {
   return (
     <>
       <AuthContext.Provider value={authInfo}>
-        <Toaster position="top-center" reverseOrder={false}/>
-        <RouterProvider router={router}></RouterProvider>
+        <PhotoProvider>
+          <Toaster position="top-center" reverseOrder={false}/>
+          <RouterProvider router={router}></RouterProvider>
+        </PhotoProvider>
       </AuthContext.Provider>
     </>
   );

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import useTitle from '../../hooks/useTitle';
 import './AllReview.css';
 const AllReview = () => {
   const [clientReview, setClientReview] = useState();
+  useTitle("All Review")
   useEffect( ()=> {
         fetch("https://assignment-10-server-iota.vercel.app/review")
         .then(res=>res.json())

@@ -1,14 +1,21 @@
 import React, { useContext, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../App';
 import './ServiceDetail.css';
+import loader from '../../assets/loader/loader.gif'
+import useTitle from '../../hooks/useTitle';
 const ServiceDetail = ({name}) => {
-    const {user} = useContext(AuthContext)
+    useTitle()
+    const {user, loading} = useContext(AuthContext)
     const service = useLoaderData();
     const [reviews, setReviews] = useState([]);
     const serviceData = service.data[0];
     const {service_name, short_description, long_description, img, owner, owner_img} = serviceData;
-
+    useTitle(service_name)
+    if(loading){
+        return  <div className='flex justify-center items-center p-12'><img src={loader} alt="Loader..." /></div> 
+    }
     fetch(`https://assignment-10-server-iota.vercel.app/reviews/${service_name}`)
     .then(res=>res.json())
     .then(data=>setReviews(data.data))
@@ -19,21 +26,25 @@ const ServiceDetail = ({name}) => {
         const review = form.review.value;
         console.log(review, user)
         const reviewData = {
-            review_content: review
+            review_service_name: service_name,
+            review_content: review,
+            name: user.displayName,
+            email: user.email,
+            img: user.photoURL,
         }
         console.log(reviewData)
-        // fetch("https://assignment-10-server-iota.vercel.app/review", {
-        //     method: "POST",
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify(serviceData)
-        // })
-        // .then(()=> {
-        //     toast.success("Add Service Successful")
-        //     return form.reset();
-        // })
-        // .catch(()=>toast.error("Add Service Fail! Please try again"))
+        fetch("https://assignment-10-server-iota.vercel.app/review", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(reviewData)
+        })
+        .then(()=> {
+            toast.success("Add Review Successful")
+            return form.reset();
+        })
+        .catch(()=>toast.error("Add Review Fail! Please try again"))
     }
     return (
         <>
@@ -59,8 +70,10 @@ const ServiceDetail = ({name}) => {
             <div className="product-review p-5">
                 <h3 className='text-center text-6xl font-bold'>Product Review</h3>
             </div>
-            <div className="write-review">
-                <form action="" onClick={formHandler}>
+            <div className="write-review grid grid-cols-3">
+                <div></div>
+                <form action="" onSubmit={formHandler}>
+                    {user?.email ?
                 <div>
                         <label
                             htmlFor="name"
@@ -68,7 +81,7 @@ const ServiceDetail = ({name}) => {
                         >
                            Write Review
                         </label>
-                        <div className="flex flex-col items-start">
+                        <div className="flex flex-col items-start w-50">
                              <textarea
                                     type="text"
                                     name="review"
@@ -90,13 +103,23 @@ const ServiceDetail = ({name}) => {
                                     focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                 />
                         </div>
+                            <div className="flex items-center justify-end mt-4">
+                                <button
+                                    type="submit"
+                                    className="inline-flex items-center px-4 py-2 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-md active:bg-gray-900 false"
+                                >
+                                    Review
+                                </button>
+                         </div>
                     </div>
+                     :  <div className="font-bold text-2xxl text-center">Please <Link to='../login' className="text-red-500">Login</Link> to add a review</div>  }
                 </form>
+                <div></div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-12">
                 {reviews.map((review=>{
                     return(
-                        <div className="review-content">
+                        <div key={review._id} className="review-content">
                             <div className="review-header px-14 py-5 flex gap-3 items-center">
                                 <img src={review.img} className="mt-3" alt="" />
                                <div className="review-header-text">
