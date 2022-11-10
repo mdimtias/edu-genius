@@ -1,12 +1,11 @@
 import React from 'react';
-import Img1 from '../../../assets/slider/1.jpg';
 import './Slider.css'
 const Slider = () => {
     return (
         <div className="carousel w-full slider-shadow">
   <div id="slide1" className="carousel-item relative w-full">
     <div className="carousel-img w-full">
-        <img src={Img1} className="w-full" alt="home" />
+        <img src="https://cdn.pixabay.com/photo/2017/05/20/20/22/clouds-2329680__340.jpg" className="w-full" alt="home" />
     </div>
     <div className="absolute flex flex-col justify-end transform -translate-y-1/2 left-8 sm:left-24 top-1/2">
         <h1 className='text-3xl sm:text-6xl font-bold text-white'>
@@ -23,7 +22,7 @@ const Slider = () => {
   </div> 
   <div id="slide2" className="carousel-item relative w-full">
   <div className="carousel-img w-full">
-        <img src={Img1} className="w-full" alt="home" />
+        <img src="https://cdn.pixabay.com/photo/2016/11/06/05/38/boats-1802340__340.jpg" className="w-full" alt="home" />
     </div>
     <div className="absolute flex flex-col justify-end transform -translate-y-1/2 left-24 top-1/2">
         <h1 className='text-6xl font-bold text-white'>
@@ -39,7 +38,7 @@ const Slider = () => {
   </div> 
   <div id="slide3" className="carousel-item relative w-full">
   <div className="carousel-img w-full">
-        <img src={Img1} className="w-full" alt="home" />
+        <img src="https://cdn.pixabay.com/photo/2016/11/04/21/34/beach-1799006__340.jpg" className="w-full" alt="home" />
     </div>
     <div className="absolute flex flex-col justify-end transform -translate-y-1/2 left-24 top-1/2">
         <h1 className='text-6xl font-bold text-white'>
@@ -55,7 +54,7 @@ const Slider = () => {
   </div> 
   <div id="slide4" className="carousel-item relative w-full">
   <div className="carousel-img w-full">
-        <img src={Img1} className="w-full" alt="home" />
+        <img src="https://cdn.pixabay.com/photo/2017/10/10/07/48/beach-2836300__340.jpg" className="w-full" alt="home" />
     </div>
     <div className="absolute flex flex-col justify-end transform -translate-y-1/2 left-24 top-1/2">
         <h1 className='text-6xl font-bold text-white'>
