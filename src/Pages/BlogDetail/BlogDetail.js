@@ -5,7 +5,7 @@ import useTitle from '../../hooks/useTitle';
 const BlogDetail = () => {
     const blogData = useLoaderData();
     const blog = blogData.data[0];
-    useTitle(blog.title);
+    useTitle(blog?.title);
     return (
         <div className="latest-news p-8">
             <div className="article-wrapper p-2 sm:p-12">
